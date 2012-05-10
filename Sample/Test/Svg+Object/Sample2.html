@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SVG (with a element) + object element</title>
+<style>
+    a
+    {
+        border: 1px solid #c0c0f0;
+    }
+        a object, a img
+        {
+            vertical-align: bottom;
+        }
+</style>
+
+<h1>SVG (with a element) + object element</h1>
+
+<p>
+<object data="img/sample_02.svg" width="100px" height="100px" type="image/svg+xml">
+<img src="img/sample_01.png" alt="Sample 01" />
+</object>
+</p>
+
+<pre><code>
+&lt;svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+&lt;a xlink:href="http://www.w3.org"&gt;
+  &lt;g&gt;
+   &lt;rect fill="#e0e0e0" x="0" y="0" width="100" height="100" id="svg_45"/&gt;
+   &lt;path fill="none" stroke="#000000" stroke-width="5" id="svg_40" d="m28,7c-1,2 -3,2 -4,3c-1,1 -2,2 -3,3c-1,1 -1,1 -2,2c0,0 0.30656,2.4588 -1,3c-0.92388,0.38268 -1,1 -2,2c-1,1 -2.4588,1.69344 -3,3c-0.38268,0.92388 1.02675,0.77025 2,1c2.17625,0.51374 3,2 4,2c1,0 2.07612,-0.38268 3,0c1.30656,0.5412 2.07612,0.61732 3,1c1.30656,0.5412 2,1 3,1c1,0 1.69344,0.4588 3,1c0.92388,0.38268 2.07612,-0.38268 3,0c1.30656,0.5412 2,1 2,2c0,0 0.30656,0.4588 -1,1c-1.84776,0.76537 -3.14935,1.47427 -4,2c-1.90211,1.17557 -2.69255,2.18601 -4,4c-1.65381,2.29454 -3,3 -4,4l0,1l0,1l-1,0"/&gt;
+   &lt;path fill="none" stroke="#000000" stroke-width="5" id="svg_41" d="m35,41c1,1 2.4588,2.69344 3,4c0.38268,0.92388 0.82443,1.09789 2,3c0.52573,0.85065 0.4588,1.69344 1,3c0.76537,1.84776 1,5 1,6c0,1 1,3 2,3c1,0 1.48626,-1.82375 2,-4c0.45951,-1.9465 2,-5 3,-6c0,0 0,0 1,-2c0,0 1.23463,-3.15224 2,-5c0.54119,-1.30656 3,-4 3,-5l1,-1"/&gt;
+   &lt;path fill="none" stroke="#000000" stroke-width="5" id="svg_42" d="m65,63c0,0 0,0 0,0c0,0 -1,0 -2,0c-1,0 -2,0 -3,0c-1,0 -2.07612,-0.38268 -3,0c-1.30656,0.54119 -1,2 -1,3c0,0 -1,0 -1,1c0,1 0,2 0,3c0,1 0,2 0,3c0,1 0,3 0,4c0,1 0.07612,1.61732 1,2c1.30656,0.5412 1.69344,1.4588 3,2c0.92388,0.38268 2,0 3,0c2,0 3,0 5,0c1,0 2,0 3,0c1,0 2.07612,0.38268 3,0c1.30656,-0.5412 2,-3 3,-4l0,-1"/&gt;
+   &lt;path fill="none" stroke="#000000" stroke-width="5" id="svg_43" d="m66,66c1,0 2,0 3,0c2,0 3,0 4,0l1,0l1,0l1,0"/&gt;
+   &lt;path fill="none" stroke="#000000" stroke-width="5" id="svg_44" d="m75,72c0,1 0,2 0,3c0,2 0,3 0,4c0,1 -0.38268,2.07612 0,3c0.5412,1.30656 0.77025,2.02675 1,3c0.51374,2.17625 1,3 1,4l0,1l1,1"/&gt;
+  &lt;/g&gt;
+ &lt;/a&gt;
+&lt;/svg&gt;
+</code></pre>

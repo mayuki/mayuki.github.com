@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>CSS for Metro style app: Zoom
+</title>
+<style>
+body
+{
+    /*-ms-content-zooming: none; */
+}
+section
+{
+    margin: 0 0 32px;
+}
+section h1
+{
+    font-size: 1.4em;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+section h2
+{
+    font-size: 1.2em;
+    font-family: 'Segoe UI Semilight', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+
+style[scoped]
+{
+    margin: 1em;
+    display: block;
+    border: 1px solid #808080;
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+    white-space: pre-wrap;
+    padding: 1em;
+}
+</style>
+
+<section id="ms-content-zooming">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441251(v=VS.85).aspx">-ms-content-zooming</a></h1>
+
+<h2>-ms-content-zooming: none</h2>
+<div class="container">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-content-zooming: zoom</h2>
+<div class="container zoom">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<style scoped>
+#ms-content-zooming .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-content-zooming: none;
+}
+#ms-content-zooming .container.zoom
+{
+    -ms-content-zooming: zoom;
+}
+</style>
+</section>
+
+<section id="ms-content-zoom-boundary">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441221(v=VS.85).aspx">-ms-content-zoom-boundary</a></h1>
+
+<h2>-ms-content-zoom-boundary-min: 50%</h2>
+<div class="container min">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-content-zoom-boundary-max: 50%</h2>
+<div class="container max">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<style scoped>
+#ms-content-zoom-boundary .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-content-zooming: zoom;
+}
+#ms-content-zoom-boundary .container.min
+{
+    -ms-content-zoom-boundary-min: 50%;
+}
+#ms-content-zoom-boundary .container.max
+{
+    -ms-content-zoom-boundary-max: 120%;
+}
+</style>
+</section>
+
+<section id="ms-content-zoom-chaining">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441243(v=VS.85).aspx">-ms-content-zoom-chaining</a></h1>
+
+<h2>-ms-content-zoom-chaining: none</h2>
+<div class="container">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-content-zoom-chaining: chained</h2>
+<div class="container chained">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<style scoped>
+#ms-content-zoom-chaining .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-content-zooming: zoom;
+    -ms-content-zoom-chaining: none;
+}
+#ms-content-zoom-chaining .container.chained
+{
+    -ms-content-zoom-chaining: chained;
+}
+</style>
+</section>
+
+<section id="ms-content-zoom-snap-type">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441264(v=VS.85).aspx">-ms-content-zoom-snap-type</a></h1>
+
+<h2>-ms-content-zoom-snap-type: none</h2>
+<div class="container">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-content-zoom-snap-type: mandatory; -ms-content-zoom-snap-points: snapInterval(0%, 10%) | msContentZoomFactor:<span class="mandatory-zoomfactor">0</span></h2>
+<div class="container mandatory">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-content-zoom-snap-type: proximity; -ms-content-zoom-snap-points: snapList(50%, 75%, 100%, 125%, 150%, 200%) | msContentZoomFactor:<span class="proximity-zoomfactor">0</span></h2>
+<div class="container proximity">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        setInterval(function () {
+            document.querySelector('#ms-content-zoom-snap-type .mandatory-zoomfactor').textContent = document.querySelector('#ms-content-zoom-snap-type .container.mandatory').msContentZoomFactor;
+            document.querySelector('#ms-content-zoom-snap-type .proximity-zoomfactor').textContent = document.querySelector('#ms-content-zoom-snap-type .container.proximity').msContentZoomFactor;
+        }, 1000);
+    }, false);
+</script>
+<style scoped>
+#ms-content-zoom-snap-type .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-content-zooming: zoom;
+    -ms-content-zoom-snap-type: none;
+    -ms-content-zoom-boundary: 50% 200%;
+    -ms-zoom-animation: none;
+}
+#ms-content-zoom-snap-type .container.mandatory
+{
+    -ms-content-zoom-snap-type: mandatory;
+    -ms-content-zoom-snap-points: snapInterval(0%, 10%); 
+}
+#ms-content-zoom-snap-type .container.proximity
+{
+    -ms-content-zoom-snap-type: proximity;
+    -ms-content-zoom-snap-points: snapList(50%, 75%, 100%, 125%, 150%, 200%); 
+}
+</style>
+</section>
+
+<section id="ms-zoom-animation">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh466117(v=VS.85).aspx">-ms-zoom-animation</a></h1>
+
+<h2>-ms-zoom-animation: none</h2>
+<div class="container">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-zoom-animation: default</h2>
+<div class="container default">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<style scoped>
+#ms-zoom-animation .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-content-zooming: zoom;
+    -ms-zoom-animation: none;
+}
+#ms-zoom-animation .container.chained
+{
+    -ms-zoom-animation: default;
+}
+</style>
+</section>

@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>CSS for Metro style app: Form</title>
+<style>
+section
+{
+    margin: 0 0 32px;
+}
+section h1
+{
+    font-size: 1.4em;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+section h2
+{
+    font-size: 1.2em;
+    font-family: 'Segoe UI Semilight', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+
+style[scoped]
+{
+    margin: 1em;
+    display: block;
+    border: 1px solid #808080;
+    font-size: 12px;
+    font-family: 'Consolas', monospace;
+    white-space: pre-wrap;
+    padding: 1em;
+}
+</style>
+
+<section>
+<h1>TextBox (input type="text")</h1>
+<h2>Default</h2>
+<div><input type="text" placeholder="Placeholder" /></div>
+<h2>Styling</h2>
+<div class="styled"><input type="text" placeholder="Placeholder" /></div>
+<style scoped="scoped">.styled ::-ms-clear {
+    color: blue;
+}
+.styled ::-ms-value {
+    color: #ff6a00;
+}</style>
+</section>
+
+<section>
+<h1>Password (input type="password")</h1>
+<h2>Default</h2>
+<div><input type="password" placeholder="Placeholder" /></div>
+<h2>Styling</h2>
+<div class="styled"><input type="password" placeholder="Placeholder" /></div>
+<style scoped="scoped">.styled ::-ms-reveal {
+    display: inline;
+}</style>
+</section>
+
+<section>
+<h1>Checkbox (input type="checkbox")</h1>
+<h2>Default</h2>
+<div><label><input type="checkbox" />Checkbox</label></div>
+<h2>Styling</h2>
+<div class="styled"><label><input type="checkbox" />Checkbox</label></div>
+<div class="styled"><label><input type="checkbox" class="checkWithImage" />Checkbox</label></div>
+<style scoped="scoped">.styled ::-ms-check {
+    color: green;
+}
+.styled .checkWithImage::-ms-check {
+    color: transparent;
+    width: 16px;
+    height: 16px;
+    background-image: url(Images/Unchecked.png);
+    border-style: none;
+}
+.styled .checkWithImage:checked::-ms-check {
+    background-image: url(Images/Checked.png);
+}</style>
+</section>
+
+<section>
+<h1>Dropdown (select/option)</h1>
+<h2>Default</h2>
+<div><select><option>Hauhau</option><option>Maumau</option></select></div>
+<h2>Styling</h2>
+<div class="styled"><select><option>Hauhau</option><option>Maumau</option></select></div>
+<style scoped="scoped">.styled select {
+    background-color: #ff6a00;
+    border: 1px solid #ff6a00;
+    padding: 0.5em;
+}
+.styled select::-ms-expand {
+    border: 1px solid #bc4e00;
+    border-radius: 4px;
+    background-color: #bc4e00;
+    color: #fff;
+}
+.styled option {
+    background-color: #ff6a00;
+    color: #fff;
+}</style>
+</section>
+
+<section>
+<h1>Slider (input type="range")</h1>
+<h2>Default</h2>
+<div><input type="range" value="25" max="100" step="10" /><input type="range" value="25" max="100" step="10" class="vertical" /></div>
+<h2>Styling</h2>
+<div class="styled"><input type="range" value="25" max="100" step="10" /><input type="range" value="25" max="100" step="10" class="vertical" /></div>
+<style scoped="scoped">.styled ::-ms-fill-lower {
+    background-color: blue;
+}
+.styled ::-ms-fill-upper {
+    background-color: yellow;
+}
+.styled ::-ms-thumb {
+    background-color: red;
+}
+.styled ::-ms-track {
+    color: red;
+}
+.styled ::-ms-ticks-after {
+    display: inline;
+    background-color: #ebebeb;
+    color: orange;
+}
+.styled ::-ms-ticks-before {
+    display: inline;
+    background-color: #c5efca;
+    color: green;
+}
+.styled ::-ms-tooltip {
+	display: none;
+}
+input[type=range].vertical {
+    height: 100px;
+    width: auto;
+}</style>
+</section>
+
+<section>
+<h1>Progress (input type="progress")</h1>
+<h2>Default</h2>
+<div><progress max="100">0</progress></div>
+<div><progress value="25" max="100">25</progress></div>
+<h2>Styling</h2>
+<div class="styled"><progress max="100">0</progress></div>
+<div class="styled"><progress value="25" max="100">25</progress></div>
+<style scoped="scoped">.styled progress:indeterminate {
+    color: orange;
+    width: 32px;
+    height: 32px;
+}
+.styled progress[value] {
+    background-color: yellow;
+}
+.styled progress::-ms-fill {
+    background-color: red;
+}</style>
+</section>

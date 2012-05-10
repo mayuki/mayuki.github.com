@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Force user-scalable=yes - Bookmarklets - mayuki.github.com</title>
+<link rel="stylesheet" href="../../Shared/Css/common.css">
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.4.min.js"></script>
+<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+<header>
+<h1>Force user-scalable=yes</h1>
+<p>いいぜ、てめえが何でも思い通りに出来るってなら、まずはそのふざけた幻想をぶち殺す。</p>
+</header>
+
+<p>iPhone向けに作られたページでズームが無効化されている場合でも強制的にズームできるようにするブックマークレットです。</p>
+<p>user-scalable=no や maximum-scale=1.0 などと設定されていてもズームできるようになります。</p>
+
+<p><a rel="nofollow" href="Install.html?javascript:(function(){var metaE=document.querySelector('meta[name=viewport]');var content=metaE.content.split(/[,;]\s*/).filter(function(e){return e!=''}).join(',');metaE.content=content.replace(/maximum-scale=[^,]+/gi,'maximum-scale=10.0').replace(/user-scalable=[^,]+/gi,'user-scalable=yes');})();"><button>ブックマークレットを保存する</button></a></p>
+
+<address>Mayuki Sawatari &lt;mayuki@misuzilla.org&gt; | <a href="http://www.misuzilla.org/">Misuzilla.org</a> | <a href="http://twitter.com/mayuki">Twitter</a></address>
+
+</body>
+</html>

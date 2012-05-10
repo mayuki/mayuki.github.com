@@ -1,0 +1,59 @@
+* { font-family: 'Arial', 'メイリオ', sans-serif; }
+body {
+    margin: 5% 5%;
+}
+
+header { display:block; margin: 1em 0 2em 0; }
+header h1 { font-size: 32pt; margin: 0; }
+header p { font-size: 80%; color: #808080; }
+
+article {
+    display: block;
+    border: 1px solid #bea985;
+    padding: 1em;
+    padding-left: 2em;
+    margin: 0;
+    background-color: #fbf8f0;
+}
+article h1 {
+    margin: 0;
+    padding: 0;
+    margin-left: -1em;
+    font-size: 1em;
+}
+
+article h1 img {
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+figure { display: block; margin: 0; padding: 0; }
+figure figcaption { display: block; font-size: 80%; color: #808080; }
+figure img {
+    border: 1px solid #808080;
+}
+
+address {
+    margin: 2em 0;
+    font-style: normal;
+    font-size: 80%;
+    color: #808080;
+}
+
+.install {
+    margin-top: 1em;
+}
+
+input[type='button'] {
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: #453f34;
+    border: 1px solid #6e5529;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0.5em;
+}
+

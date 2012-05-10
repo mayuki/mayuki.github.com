@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>CSS for Metro style app: Scroll</title>
+<style>
+html { -ms-content-zooming: none; font-family: 'Arial', 'メイリオ', sans-serif; }
+section
+{
+    margin: 0 0 32px;
+}
+section h1
+{
+    font-size: 1.4em;
+    font-family: 'Segoe UI', 'メイリオ', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+section h2
+{
+    font-size: 1.2em;
+    font-family: 'Segoe UI Semilight', 'メイリオ', sans-serif;
+    font-weight: normal;
+    margin: 0.3em 0;
+    padding: 0;
+}
+
+style[scoped]
+{
+    margin: 1em;
+    display: block;
+    border: 1px solid #808080;
+    font-size: 12px;
+    font-family: 'Consolas', 'MS Gothic', monospace;
+    white-space: pre-wrap;
+    padding: 1em;
+}
+</style>
+
+<section id="a1">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh466018(v=VS.85).aspx">-ms-scroll-rails</a></h1>
+
+<h2>-ms-scroll-rails: none</h2>
+<div class="container">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<h2>-ms-scroll-rails: railed (スクロール時に縦横方向を固定)</h2>
+<div class="container railed">
+<img src="Images/Kuma.jpg" alt="クマー!" />
+<!--/container--></div>
+
+<style scoped>
+#a1 .container
+{
+    width: 500px;
+    height: 240px;
+    overflow: scroll;
+    border: 1px solid #808080;
+    -ms-scroll-rails: none;
+}
+#a1 .container.railed
+{
+    -ms-scroll-rails: railed;
+}
+</style>
+</section>
+
+<section id="a2">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh466057(v=VS.85).aspx">-ms-scroll-snap-type</a></h1>
+
+<div style="display:none">
+<h2>-ms-scroll-snap-type: none</h2>
+<div class="viewport">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+</div>
+
+<h2>-ms-scroll-snap-type: mandatory</h2>
+<div class="viewport mandatory">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<h2>-ms-scroll-snap-type: proximity</h2>
+<div class="viewport proximity">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<div style="display:none">
+<h2>-ms-scroll-snap-type: none; -ms-scroll-snap-points-x: snapInterval(0%, 50%);</h2>
+<div class="viewport snap-points">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+</div>
+
+<h2>-ms-scroll-snap-type: mandatory; -ms-scroll-snap-points-x: snapInterval(0%, 50%);</h2>
+<div class="viewport mandatory snap-points">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<h2>-ms-scroll-snap-type: proximity; -ms-scroll-snap-points-x: snapInterval(0%, 50%);</h2>
+<div class="viewport proximity snap-points">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<style scoped>
+#a2 .viewport
+{
+    width: 240px;
+    height: 240px;
+    border: 1px solid #808080;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -ms-scroll-snap-type: none;
+}
+#a2 .viewport.mandatory
+{
+    -ms-scroll-snap-type: mandatory;
+}
+#a2 .viewport.proximity
+{
+    -ms-scroll-snap-type: proximity;
+}
+#a2 .viewport.snap-points
+{
+    -ms-scroll-snap-points-x: snapInterval(0%, 50%);
+}
+#a2 .container
+{
+    width: 1440px;
+    height: 240px;
+}
+</style>
+</section>
+
+<section id="a3">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441298(v=vs.85).aspx">-ms-overflow-style</a> (Metro app only)</h1>
+
+<h2>-ms-overflow-style: auto</h2>
+<div class="viewport">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-overflow-style: scrollbar</h2>
+<div class="viewport scrollbar">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-overflow-style: panner (動かない)</h2>
+<div class="viewport panner">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-overflow-style: move (動かない)</h2>
+<div class="viewport move">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-overflow-style: marquee (動かない)</h2>
+<div class="viewport marquee">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<style scoped>
+#a3 .viewport
+{
+    width: 240px;
+    height: 240px;
+    border: 1px solid #808080;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: auto;
+    -ms-scroll-snap-type: none;
+}
+#a3 .container
+{
+    width: 1440px;
+    height: 240px;
+}
+#a3 .viewport.scrollbar { -ms-overflow-style: scrollbar; }
+#a3 .viewport.panner { -ms-overflow-style: panner; }
+#a3 .viewport.move { -ms-overflow-style: move; }
+#a3 .viewport.marquee { -ms-overflow-style: marquee; }
+</style>
+</section>
+
+<section id="a4">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh466090(v=VS.85).aspx">-ms-scroll-style</a> (Metro style app)</h1>
+
+<h2>-ms-scroll-style: auto</h2>
+<div class="viewport">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-scroll-style: indicator-only (動かない)</h2>
+<div class="viewport indicator-only">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-scroll-style: none (動かない)</h2>
+<div class="viewport none">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<style scoped>
+#a4 .viewport
+{
+    width: 240px;
+    height: 240px;
+    border: 1px solid #808080;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -ms-overflow-style: auto;
+    -ms-scroll-style: auto;
+    -ms-scroll-snap-type: none;
+}
+#a4 .container
+{
+    width: 1440px;
+    height: 240px;
+}
+#a4 .viewport.none { -ms-scroll-style: none; }
+#a4 .viewport.indicator-only { -ms-scroll-style: indicator-only; }
+</style>
+</section>
+
+<section id="a5">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh441308(v=VS.85).aspx">-ms-scroll-boundary</a></h1>
+<p>スクロールの境界を指定します。</p>
+<h2>-ms-scroll-boundary: 0 240px 240px 0;</h2>
+<div class="viewport">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<style scoped>
+#a5 .viewport
+{
+    width: 240px;
+    height: 240px;
+    border: 1px solid #808080;
+    overflow: auto;
+    -ms-scroll-boundary: 0 240px 240px 0;
+}
+#a5 .container
+{
+    width: 720px;
+    height: 480px;
+}
+</style>
+</section>
+
+<section id="a6">
+<h1><a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh466007(v=VS.85).aspx">-ms-scroll-chaining</a></h1>
+<p>スクロールの境界に達した時の挙動を指定します。</p>
+<h2>-ms-scroll-chaining: none; (Default)</h2>
+<div class="viewport">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+<h2>-ms-scroll-chaining: chained; (境界に達したあとのスクロールは親の要素のスクロールにつながります)</h2>
+<div class="viewport chained">
+<div class="container">
+<img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" /><img src="Images/Image1.jpg" alt="Image1" /><img src="Images/Image2.jpg" alt="Image2" /><img src="Images/Image3.jpg" alt="Image3" />
+<!--/container--></div>
+<!--/viewport--></div>
+
+<style scoped>
+#a6 .viewport
+{
+    width: 240px;
+    height: 240px;
+    border: 1px solid #808080;
+    overflow: auto;
+    overflow-x: hidden;
+    -ms-scroll-chaining: none;
+}
+#a6 .viewport.chained
+{
+    -ms-scroll-chaining: chained;
+}
+#a6 .container
+{
+    width: 240px;
+    height: 1440px;
+}
+</style>
+</section>

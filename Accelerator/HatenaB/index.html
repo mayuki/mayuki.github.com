@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hatena Bookmark | Accelerator</title>
+<script src="http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.4.min.js" type="text/javascript"></script>
+<style>
+    *
+    {
+        margin: 0;
+        padding: 0;
+        font-size: 10pt;
+    }
+    body
+    {
+        margin: 0;
+        padding: 0;
+        width: 320px;
+        height: 240px;
+        /*border: 1px solid red;
+        font-family: 'MS Shell Dlg';*/
+        font-family: 'メイリオ', 'Arial' , Sans-Serif;
+        font-size: 10pt;
+    }
+    p
+    {
+        margin: 0;
+        padding: 0;
+    }
+    h1
+    {
+        font-weight: bold;
+        padding: 0.25em 0;
+    }
+    h1
+    {
+        color: Black;
+        text-decoration: none;
+    }
+    h2
+    {
+        color: White;
+        background-color: #2c6ebd;
+        padding: 0.25em;
+        /*font-weight: bold;*/
+        font-weight: normal;
+    }
+    a img
+    {
+        border: 0 transparent none;
+    }
+    
+    #content
+    {
+        width: 320px;
+        height: 240px;
+
+        overflow: auto;
+    }
+    
+    #notBookmarkedYet, #loadingPanel
+    {
+        text-align: center;
+        margin: 2em;
+    }
+    
+    #navBookmark
+    {
+        border-bottom: 1px solid #c0c0c0;
+        padding: 0.25em 0;
+    }
+    
+    #bookmarkDetails, #notBookmarkedYet
+    {
+    }
+    
+    .commentItem
+    {
+        border-bottom: 1px solid #c0c0c0;
+        word-break: break-all;
+    }
+    .commentItem img
+    {
+        vertical-align: middle;
+    }
+    
+    .commentItem.odd
+    {
+        background-color: #f0f0f0;
+    }
+    
+</style>
+<script>
+    $(function() {
+        var urlParams = decodeURIComponent(window.location.hash.substring(1));
+        var urlParamsParts = urlParams.match(/^(Open:)?(.*)/);
+        var url = urlParamsParts[2];
+        
+        // Click context menu
+        if (urlParamsParts[1] == 'Open:') {
+            window.location = 'http://b.hatena.ne.jp/append?' + encodeURIComponent(url);
+        } else {
+        // Show preview
+            $('#bookmarkInfo')
+            .find('#bookmarkDetails')
+                .hide()
+            .end()
+            .find('#notBookmarkedYet')
+                .hide()
+            .end()
+            .find('#loadingPanel')
+                .show()
+            .end()
+
+            updateBookmarkNav(url);
+
+            var scriptE = document.createElement('script');
+            scriptE.src = "http://b.hatena.ne.jp/entry/jsonlite/?url=" + encodeURIComponent(url) + "&callback=callbackReceived&__dummy=" + (new Date().toString());
+            document.body.appendChild(scriptE);
+        }
+    });
+
+    function updateBookmarkNav(url) {
+        var matches = url.match(/^http(s?):\/\/(.*)/);
+        $('.pageLink').attr('href', url);
+        $('.addBookmark').attr('href', 'http://b.hatena.ne.jp/append?' + encodeURI(url));
+        $('.showBookmark').attr('href', 'http://b.hatena.ne.jp/entry/' + (matches[1] == 's' ? 's/' : '') + matches[2]);
+    }
+
+    function callbackReceived(bookmarkInfo) {
+        if (bookmarkInfo == null) {
+            $('#notBookmarkedYet').show();
+        } else {
+            updateBookmarkNav(bookmarkInfo.url);
+            $('#title').text(bookmarkInfo.title);
+            $('#count').attr('src', 'http://b.hatena.ne.jp/entry/image/' + bookmarkInfo.url).attr('alt', bookmarkInfo.count + 'users');
+
+            $.each(bookmarkInfo.bookmarks, function(i, bookmarkComment) {
+                if (bookmarkComment.comment == '') return;
+
+                $("#commentItem").clone()
+                .attr('title', 'ブックマーク日時: ' + bookmarkComment.timestamp + '\x0A' + 'タグ:' + bookmarkComment.tags.join(', '))
+                .find(".user").attr('href', 'http://b.hatena.ne.jp/' + bookmarkComment.user + '/' + bookmarkComment.timestamp.replace(/^(\d+)\/(\d+)\/(\d+).*/, '$1$2$3') + '#bookmark-' + bookmarkInfo.eid).end()
+                .find(".user .name").text(bookmarkComment.user).end()
+                .find(".user .icon").attr('src', 'http://www.st-hatena.com/users/' + bookmarkComment.user.substring(0, 2) + '/' + bookmarkComment.user + '/profile_s.gif').end()
+                .find(".comment").text(bookmarkComment.comment).end()
+                .show()
+                .appendTo('#comments')
+            ;
+            });
+            $('#comments .commentItem:nth-child(odd)').addClass('odd');
+            $('#bookmarkDetails').show();
+        }
+        $('#loadingPanel').hide();
+    }
+</script>
+</head>
+
+<body>
+<div id="content">
+<div id="bookmarkInfo">
+
+<div id="navBookmark">
+<img src="data:image/gif;base64,R0lGODlhEAAMAJECAP///xhBzv///wAAACH5BAEAAAIALAAAAAAQAAwAAAIjVI6ZBu3/TlNOAovD1JfnDXZJ+IGl1UFlelLpC8WXodSHUAAAOw==" alt="" />
+<a class="addBookmark" href="" target="_blank">ブックマークに追加</a> | <a class="showBookmark" href="" target="_blank">ブックマークページ</a>
+</div><!-- /navBookmark -->
+
+<div id="loadingPanel">
+<img src="data:image/gif;base64,R0lGODlhEAAQAKIHAEyEx2ya0Yuv2+rx+avF5Sxuvcvb7////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQJCgAHACwAAAAAEAAQAAADQni63BowHEDBKbi8OOvNG9RRHxZKlZVpTssIsOC+8bzEsn3get8QQMLBQDQcBsiBIigsGpPKA3NYPCaXQSrRivQxEgAh+QQJCgAHACwAAAAAEAAQAAADQni63CpQnEDDARi8OOvNG9RRHxZKlZVpTssQMOEUdKHEclPbBz7Xt9iP5ioeDEjDYcActJLKptMBXTafSSvTyD0kAAAh+QQJCgAHACwAAAAAEAAQAAADQni63EqQHEHFCTi8OOvNG9RRHxZKlZVpTssYsOEANKDEclPbBz7Xt9iP5ioeBsiBo8AsKJLKRtN5TC6bT6sUa3QkAAAh+QQJCgAHACwAAAAAEAAQAAADQHi63GrQHELJEVi8OOvNG9RRHxZKlZVpTssM8OAEdKDEclPbBz7Xt9iP5io6CsjCAcAEtJLKpvOYXDafVamxlQAAIfkECQoABwAsAAAAABAAEAAAA0J4utw6cBxDzSGYvDjrzRvUUR8WSpWVaU7rOkIsvIs804eN5/LuFMDCAUAEHALIgCIoLBqTygNzWDwml0Eq0Yr0MRIAIfkECQoABwAsAAAAABAAEAAAA0J4utx+I45jqnly2usytZj0VU+5FGjhECyhpGrTuge8tm96s6YJ/IBDYBg4CI4CBTBILCKTh6WQaEQqgdNh9dh7JAAAIfkECQoABwAsAAAAABAAEAAAA0F4utxasLhBx4uzXpjplk1lOSQDnIBjrIaCpg3bHq/Kuqi9lvwR/IGDYCg4EI4EBTBILCKTPqCQaEQqpc3qsUdKAAAh+QQFCgAHACwAAAAAEAAQAAADQXi63AoQnEKLO1FW6/Ksl7ddJBmcgTOsg4KmDdser8q6qL2WpeALB4KQcDAYDYofcEg8Ig/K4LB4TP6kQqqRd0kAADs=" alt="" />
+読み込んでいます...
+<!-- /loadingPanel --></div>
+
+<div id="notBookmarkedYet">
+<p>まだ誰にもブックマークされていません。</p>
+<!-- /notBookmarkedYet --></div>
+
+<div id="bookmarkDetails">
+<h1><a class="pageLink" id="title" href=""></a></h1>
+<h2>コメント <a class="showBookmark" href="" target="_blank"><img id="count" src="data:image/x-png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII==" alt="" /></a></h2>
+<ul id="comments">
+<li id="commentItem" class="commentItem" style="display:none">
+<a class="user" target="_blank"><img class="icon" src="data:image/x-png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAMSURBVBhXY/j//z8ABf4C/qc1gYQAAAAASUVORK5CYII==" alt="" /><span class="name"></span></a>:
+<span class="comment"></span>
+</li>
+</ul>
+<!-- /bookmarkDetails --></div>
+
+<!-- /bookmarkInfo --></div>
+<!-- /content --></div>
+
+</body>
+
+</html>
+

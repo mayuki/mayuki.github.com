@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SVG + object element + a element</title>
+<style>
+    a
+    {
+        border: 1px solid #c0c0f0;
+    }
+        a object, a img
+        {
+            vertical-align: bottom;
+        }
+</style>
+
+<h1>SVG + object element + a element</h1>
+
+<h2>a + object + img (fallback)</h2>
+<p>
+<a href="http://www.example.com/">
+<object data="img/sample_01.svg" width="100px" height="100px" type="image/svg+xml">
+<img src="img/sample_01.png" alt="Sample 01" />
+</object>
+</a>
+</p>
+
+<h2>a(&quot;display: inline-block&quot;) + object + img (fallback)</h2>
+<p>
+<a href="http://www.example.com/" style="display: inline-block;">
+<object data="img/sample_01.svg" width="100px" height="100px" type="image/svg+xml">
+<img src="img/sample_01.png" alt="Sample 01" />
+</object>
+</a>
+</p>
+
+<h2>a(&quot;display: inline-block&quot;) + object(+&quot;pointer-events: none&quot;) + img (fallback)</h2>
+<p>
+<a href="http://www.example.com/" style="display: inline-block;">
+<object style="pointer-events: none;" data="img/sample_01.svg" width="100px" height="100px" type="image/svg+xml">
+<img src="img/sample_01.png" alt="Sample 01" />
+</object>
+</a>
+</p>
+
+<h2>a(&quot;display: inline-block&quot;) + object(+&quot;pointer-events: none&quot;+onload) + img (fallback)</h2>
+<p>
+<a href="http://www.example.com/" style="display: inline-block;">
+<object style="pointer-events: none;" onload="if (this.getSVGDocument) this.getSVGDocument().documentElement.style.cursor='pointer';" data="img/sample_01.svg" width="100px" height="100px" type="image/svg+xml">
+<img src="img/sample_01.png" alt="Sample 01" />
+</object>
+</a>
+</p>
