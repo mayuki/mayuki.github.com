@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Flexbox: Tiles</title>
+    <style>
+        #box1 {
+            border: 1px solid red;
+        }
+        .tiles {
+            margin: 0;
+            padding: 0;
+            height: 330px;
+            
+            display: -ms-flexbox;
+            -ms-flex-wrap: wrap;
+            -ms-writing-mode: tb-lr;
+            
+            border: 1px solid blue;
+        }
+        .tiles li {
+            margin: 0 10px 10px 0;
+            padding: 0;
+            width: 100px;
+            height: 100px;
+            display: block;
+            -ms-writing-mode: lr-tb;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+        .tiles li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .tiles li:nth-child(1) {
+            width: 210px;
+            height: 210px;
+            background-color: #fff0f0;
+        }
+        .tiles li:nth-child(2) {
+            width: 210px;
+            background-color: #f0fff0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flexbox: Tiles</h1>
+    <div id="box1">
+        <ul class="tiles">
+        <li><a href="#">Microsoft Windows</a></li>
+        <li><a href="#">は、グラフィカルユーザインタフェース (GUI) </a></li>
+        <li><a href="#">を採用し、主にインテルのx86系のマイクロプロセッサ (CPU) </a></li>
+        <li><a href="#">を搭載したコンピュータで動作するオペレーティングシステムである。</a></li>
+        <li>2010年現在では一般向けのパーソナルコンピュータの大半で使用されている。</li>
+        <li>また組み込みシステムやスマートフォンやサーバーの一部でも、</li>
+        <li>Windows系のオペレーティングシステムが使用されている。</li>
+        <li>スーパーコンピュータでもそれ向けに最適化された</li>
+        <li>Windows系のオペレーションシステムが僅かに使われている。</li>
+        <li>また、ドリームキャストやXboxにもWindowsベースのOSが使われている。</li>
+        </ul>
+    </div>
+    <p>引用: <a href="http://ja.wikipedia.org/wiki/Microsoft_Windows">Microsoft Windows - Wikipedia</a></p>
+</body>
+</html>
