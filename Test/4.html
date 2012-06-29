@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title>Android: Scroll problem</title>
+<meta name="viewport" content="width=device-width">
+<style>
+#content {
+	background-color: #f0f0f0;
+	height: 2000px;
+}
+
+</style>
+<script>
+function insertIframe(isDisplayNone) {
+	var iframeE = document.createElement('iframe');
+	iframeE.style.display = isDisplayNone ? 'none' : 'inline';
+	document.querySelector('#content').appendChild(iframeE);
+	iframeE.contentDocument.write(document.querySelector('#iframe-content').innerHTML);
+	document.querySelector('h1').textContent = 'iframe inserted';
+}
+</script>
+
+<div id="content">
+<h1>Android: Scroll problem</h1>
+<button onclick="insertIframe(false);">Insert iframe</button>
+<button onclick="insertIframe(true);">Insert iframe (display:none)</button>
+
+<textarea id="iframe-content" style="width:100%;">
+<body style="overflow:hidden"></body>
+</textarea>
+
+</div>
