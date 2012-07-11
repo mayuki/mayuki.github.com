@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Hook EventListener</title>
+<script>
+    (function () {
+        "use strict";
+
+        var windowAddEventListener = window.addEventListener,
+            windowRemoveEventListener = window.removeEventListener,
+            htmlElementAddEventListener = HTMLElement.prototype.addEventListener,
+            htmlElementRemoveEventListener = HTMLElement.prototype.removeEventListener;
+
+        [window, HTMLElement.prototype].forEach(function (target) {
+            var addEventListener = target.addEventListener,
+                removeEventListener = target.removeEventListener;
+
+            function prepareWrapperData(type) {
+                this.__eventListenerWrappers = this.__eventListenerWrappers || {};
+                this.__eventListenerWrappers[type] = this.__eventListenerWrappers[type] || { breakAtCall: false, listeners: [] };
+            }
+
+            target.addEventListener = function (type, listener, useCapture) {
+                //console.log(target + '.addEventListener: %s', type);
+                prepareWrapperData.call(this, type);
+
+                var wrapper = this.__eventListenerWrappers[type];
+                var wrappedListener = function (e) {
+                    new Function(["listener", "e"], (wrapper.breakAtCall ? "debugger;\n" : "") + "listener.call(this, e);").call(this, listener, e);
+                };
+                wrappedListener.originalListener = listener;
+
+                wrapper.listeners.push(wrappedListener);
+                addEventListener.call(this, type, wrappedListener, useCapture);
+            }
+            target.removeEventListener = function (type, listener) {
+                //console.log(target + '.removeEventListener: %s', type);
+
+                if (this.__eventListenerWrappers && this.__eventListenerWrappers[type]) {
+                    var self = this;
+                    this.__eventListenerWrappers[type].listeners.filter(function (wrappedListener) { return wrappedListener.originalListener == listener })
+                                                                .forEach(function (wrappedListener) { removeEventListener.call(self, type, wrappedListener); });
+                }
+            };
+            target.setEventListenerBreak = function (type, isEnabled) {
+                prepareWrapperData.call(this, type);
+                this.__eventListenerWrappers[type].breakAtCall = isEnabled;
+            }
+            target.getEventListeners = function (type) {
+                prepareWrapperData.call(this, type);
+                return this.__eventListenerWrappers[type].listeners.map(function (wrappedListener) { return wrappedListener.originalListener; });
+            }
+        });
+    })();
+
+    window.addEventListener('DOMContentLoaded', function () {
+        function onClickHandler (e) {
+            alert(2);
+        }
+        document.querySelector('button').addEventListener('click', onClickHandler);
+        //document.querySelector('button').removeEventListener('click', onClickHandler);
+
+        document.querySelector('input[type=checkbox]').addEventListener('change', function (e) {
+            document.querySelector('button').setEventListenerBreak('click', e.target.checked);
+        });
+    });
+</script>
+</head>
+<body>
+
+<div>
+<button>Button</button>
+<label><input type="checkbox" />Break</label>
+</div>
+
+</body>
+</html>
