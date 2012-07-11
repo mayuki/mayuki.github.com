@@ -38,8 +38,11 @@
 
                 if (this.__eventListenerWrappers && this.__eventListenerWrappers[type]) {
                     var self = this;
-                    this.__eventListenerWrappers[type].listeners.filter(function (wrappedListener) { return wrappedListener.originalListener == listener })
-                                                                .forEach(function (wrappedListener) { removeEventListener.call(self, type, wrappedListener); });
+                    var listeners = this.__eventListenerWrappers[type].listeners;
+                    listeners.filter(function (wrappedListener) { return wrappedListener.originalListener == listener })
+                             .forEach(function (wrappedListener) { removeEventListener.call(self, type, wrappedListener); });
+
+                    this.__eventListenerWrappers[type].listeners = listeners.filter(function (wrappedListener) { return wrappedListener.originalListener != listener });
                 }
             };
             target.setEventListenerBreak = function (type, isEnabled) {
