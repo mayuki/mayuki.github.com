@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS Animation</title>
+<style>
+    @keyframes image-item-appear {
+        from {
+            -ms-transform: scale(0.25, 0.25) rotate(-15deg);
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes image-item-hover {
+        0% {
+            -ms-transform: rotate(-360deg);
+            margin-left: 0;
+        }
+
+        25% {
+            margin-left: 200px;
+            margin-top: 0;
+        }
+        50% {
+            margin-left: 200px;
+            margin-top: 200px;
+        }
+        75% {
+            margin-left: 0;
+            margin-top: 200px;
+        }
+
+        100% {
+            margin-top: 0;
+            -ms-transform: rotate(0deg);
+        }
+    }
+
+    .image-item {
+        width: 300px;
+        border: 1px solid #000;
+        background-color: #f0f0f0;
+        opacity: 0;
+    }
+        .image-item.show {
+            animation-name: image-item-appear;
+            animation-duration: 0.25s;
+            opacity: 1;
+        }
+        .image-item:hover {
+            animation-name: image-item-hover;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+</style>
+<script>
+    function addClass() {
+        document.querySelector('.image-item').classList.add('show');
+    }
+</script>
+</head>
+<body>
+
+    <img class="image-item" src="img/04.png" alt="" />
+
+    <button onclick="addClass();">Show Box</button>
+
+</body>
+</html>

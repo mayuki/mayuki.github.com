@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>CSS Transition</title>
+<style>
+    .image-item {
+        width: 300px;
+        border: 1px solid #000;
+        background-color: #f0f0f0;
+        opacity: 1;
+
+        /* opacity と width の値が変化する場合には 0.5秒 かけてイージング(ease-out)つきで変わっていく */
+        transition-property: opacity width;
+        transition-duration: 0.5s;
+        transition-timing-function: ease-out;
+    }
+        .image-item:hover {
+            /* ホバーしたら opacity が 1から0.1 になる */
+            opacity: 0.1;
+            width: 500px;
+        }
+</style>
+</head>
+<body>
+
+    <img class="image-item" src="img/04.png" alt="" /> WebMatrixMan
+
+</body>
+</html>

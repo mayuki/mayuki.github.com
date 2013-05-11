@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>File API</title>
+
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        setupFilePicker();
+    });
+
+    function setupFilePicker() {
+        var inputE = document.querySelector('#filePicker');
+        inputE.addEventListener('change', function (e) {
+            loadImagesFromFiles(e.target.files, 1366/2, 768/2);
+        });
+    }
+
+    /*
+     * FileList (File API)から画像ファイルを読み込む
+     */
+    function loadImagesFromFiles(files, baseX, baseY) {
+        // 画像を配置するための div 要素
+        var imagesE = document.querySelector('#images');
+
+        for (var i = 0; i < files.length; i++) {
+            // 読み込んだファイルを表示するための img 要素を作成して、div 要素に追加する。
+            var imgE = document.createElement('img');
+            imgE.classList.add('image-item');
+            imagesE.appendChild(imgE);
+
+            (function (imgE) {
+                // ファイルを読み込むためのFileReaderクラスのオブジェクトを作成。
+                var reader = new FileReader();
+                // ファイルのデータを読み込み終わった時の処理を設定
+                reader.onloadend = function () {
+                    // ファイルのデータを読み込み終わるとFileReaderのresultプロパティにData URLでデータが格納されるので img 要素の src 属性にセットする。
+                    // img 要素で読み込みが終わった際にの処理として、表示用のclassを付けて場所もサイズから決定するようにする。
+                    imgE.onload = function () {
+                        imgE.classList.add('show');
+                        imgE.style.left = baseX + (i * 10) - (imgE.width/2) + 'px';
+                        imgE.style.top  = baseY + (i * 10) - (imgE.height / 2) + 'px';
+                    }
+                    // img 要素の src 属性にデータをセット。
+                    imgE.src = reader.result;
+                }
+                // FileReaderで読み込んでData URLとして取得する。
+                reader.readAsDataURL(files[i]);
+            })(imgE);
+        }
+    }
+</script>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #stage {
+        width: 1366px;
+        height: 768px;
+
+        overflow: hidden;
+        border: 1px solid #808080;
+        position: relative;
+
+        -ms-touch-action: none;
+    }
+    #stage #images {
+        width: 100%;
+        height: 100%;
+    }
+
+    #stage .image-item {
+        position: absolute;
+        max-width: 600px;
+    }
+</style>
+
+<div id="main" role="main">
+
+<input type="file" id="filePicker" multiple accept="image/*" />
+
+<div id="stage">
+    <div id="images">
+    <!-- /images --></div>
+<!-- /stage --></div>
+
+<!-- /main --></div>

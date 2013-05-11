@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<style>
+
+html, body { margin:0; padding:0; height: 100%; }
+
+#box1, #box2, #box3 { text-align: center; padding: 1em; font-family: 'Segoe UI Light', sans-serif; }
+
+#container {
+    width: 100%;
+    height: 100%;
+    display: -ms-grid;
+    -ms-grid-columns: 25% 75%; /* ‰¡‚ğ25% 75%‚Ì2‚Â‚É•ªŠ„ */
+    -ms-grid-rows   : 50% 50%; /* c‚ğ50% 50%‚Ì2‚Â‚É•ªŠ„ */
+}
+
+#box1 {
+    background-color: #ffaaaa;
+    -ms-grid-column: 1;
+    -ms-grid-row   : 1;
+}
+#box2 {
+    background-color: #aaffaa;
+    -ms-grid-column: 2;
+    -ms-grid-row   : 1;
+}
+#box3 {
+    background-color: #aaaaff;
+    -ms-grid-column     : 1;
+    -ms-grid-row        : 2;
+    -ms-grid-column-span: 2;
+}
+</style>
+</head>
+<body>
+
+<div id="container">
+    <div id="box1">
+        Box1 (25%)
+    </div>
+    <div id="box2">
+        Box2 (50%)
+    </div>
+    <div id="box3">
+        Box3 (50%+50%)
+    </div>
+<!-- /container --></div>
+
+
+</body>
+</html>

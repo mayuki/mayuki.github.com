@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Web Workers</title>
+<script>
+    function processWithWorkers (imageE) {
+        document.querySelector('progress').style.display = 'inline';
+
+        var canvasE = document.createElement('canvas');
+        canvasE.width  = imageE.naturalWidth;
+        canvasE.height = imageE.naturalHeight;
+
+        var ctx = canvasE.getContext('2d');
+        ctx.drawImage(imageE, 0, 0);
+
+        var imageData = ctx.getImageData(0, 0, canvasE.width, canvasE.height);
+        var worker = new Worker("js/worker.js");
+
+        worker.addEventListener('message', function (e) {
+            ctx.putImageData(e.data, 0, 0);
+            imageE.src = canvasE.toDataURL('image/png');
+            document.querySelector('progress').style.display = 'none';
+        });
+        worker.postMessage(imageData);
+    }
+ 
+    function process (imageE) {
+        document.querySelector('progress').style.display = 'inline';
+
+        var canvasE = document.createElement('canvas');
+        canvasE.width  = imageE.naturalWidth;
+        canvasE.height = imageE.naturalHeight;
+
+        var ctx = canvasE.getContext('2d');
+        ctx.drawImage(imageE, 0, 0);
+
+        var imageData = ctx.getImageData(0, 0, canvasE.width, canvasE.height);
+
+        for (var i = 0; i < imageData.data.length/4; i++) {
+            var r = imageData.data[(i*4)  ],
+                g = imageData.data[(i*4)+1],
+                b = imageData.data[(i*4)+2],
+                a = imageData.data[(i*4)+3];
+
+            var y = (r + g + b) / 3.0;
+            imageData.data[(i*4)  ] = y * 1;
+            imageData.data[(i*4)+1] = y * 0.9;
+            imageData.data[(i*4)+2] = y * 0.7;
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+
+        imageE.src = canvasE.toDataURL('image/png');
+        document.querySelector('progress').style.display = 'none';
+    }
+</script>
+</head>
+<body>
+    <button onclick="process(document.querySelector('img'))">セピア色に変換する</button>
+    <button onclick="processWithWorkers(document.querySelector('img'))">セピア色に変換する(Web Workers)</button>
+    <progress style="display:none;"></progress>
+    <img src="img/02.jpg" />
+</body>
+</html>

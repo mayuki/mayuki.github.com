@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>App</title>
+
+<link rel="stylesheet" href="css/app.css">
+<script src="js/app.js"></script>
+
+<div id="main" role="main">
+<div id="stage">
+    <progress></progress>
+    <canvas id="paint-canvas" width="1366" height="768"></canvas>
+    <div id="images">
+    <!-- /images --></div>
+<!-- /stage --></div>
+
+<div id="controls">
+    <section id="control-mode">
+        <h1>Mode</h1>
+        <div class="control-panel">
+            <label><input type="checkbox" onclick="document.querySelector('#paint-canvas').classList.toggle('enabled')" />お絵かき</label>
+        </div>
+    </section>
+    <section id="controls-effects">
+        <h1>Effect</h1>
+        <div class="control-panel">
+            <button onclick="processImages()">Sepia</button>
+        </div>
+    </section>
+    <section id="controls-file">
+        <h1>File</h1>
+        <div class="control-panel">
+            <!-- CSSでdisplayをnoneにしてinput要素は見えなくしておき、button要素をクリックした際にinput要素のclickを疑似的に呼び出す。 -->
+            <input type="file" id="filePicker" multiple accept="image/*" />
+            <button onclick="document.querySelector('#filePicker').click();">画像をインポート...</button>
+
+            <button onclick="saveToLocal()">ファイルに保存</button>
+        </div>
+    </section>
+<!-- /controls --></div>
+
+<!-- /main --></div>
