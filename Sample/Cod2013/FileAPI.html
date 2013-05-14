@@ -15,34 +15,34 @@
     }
 
     /*
-     * FileList (File API)‚©‚ç‰æ‘œƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+     * FileList (File API)ã‹ã‚‰ç”»åƒãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
      */
     function loadImagesFromFiles(files, baseX, baseY) {
-        // ‰æ‘œ‚ğ”z’u‚·‚é‚½‚ß‚Ì div —v‘f
+        // ç”»åƒã‚’é…ç½®ã™ã‚‹ãŸã‚ã® div è¦ç´ 
         var imagesE = document.querySelector('#images');
 
         for (var i = 0; i < files.length; i++) {
-            // “Ç‚İ‚ñ‚¾ƒtƒ@ƒCƒ‹‚ğ•\¦‚·‚é‚½‚ß‚Ì img —v‘f‚ğì¬‚µ‚ÄAdiv —v‘f‚É’Ç‰Á‚·‚éB
+            // èª­ã¿è¾¼ã‚“ã ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã® img è¦ç´ ã‚’ä½œæˆã—ã¦ã€div è¦ç´ ã«è¿½åŠ ã™ã‚‹ã€‚
             var imgE = document.createElement('img');
             imgE.classList.add('image-item');
             imagesE.appendChild(imgE);
 
             (function (imgE) {
-                // ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş‚½‚ß‚ÌFileReaderƒNƒ‰ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ğì¬B
+                // ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€ãŸã‚ã®FileReaderã‚¯ãƒ©ã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã€‚
                 var reader = new FileReader();
-                // ƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ğ“Ç‚İ‚İI‚í‚Á‚½‚Ìˆ—‚ğİ’è
+                // ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿çµ‚ã‚ã£ãŸæ™‚ã®å‡¦ç†ã‚’è¨­å®š
                 reader.onloadend = function () {
-                    // ƒtƒ@ƒCƒ‹‚Ìƒf[ƒ^‚ğ“Ç‚İ‚İI‚í‚é‚ÆFileReader‚ÌresultƒvƒƒpƒeƒB‚ÉData URL‚Åƒf[ƒ^‚ªŠi”[‚³‚ê‚é‚Ì‚Å img —v‘f‚Ì src ‘®«‚ÉƒZƒbƒg‚·‚éB
-                    // img —v‘f‚Å“Ç‚İ‚İ‚ªI‚í‚Á‚½Û‚É‚Ìˆ—‚Æ‚µ‚ÄA•\¦—p‚Ìclass‚ğ•t‚¯‚ÄêŠ‚àƒTƒCƒY‚©‚çŒˆ’è‚·‚é‚æ‚¤‚É‚·‚éB
+                    // ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿çµ‚ã‚ã‚‹ã¨FileReaderã®resultãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã«Data URLã§ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹ã®ã§ img è¦ç´ ã® src å±æ€§ã«ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
+                    // img è¦ç´ ã§èª­ã¿è¾¼ã¿ãŒçµ‚ã‚ã£ãŸéš›ã«ã®å‡¦ç†ã¨ã—ã¦ã€è¡¨ç¤ºç”¨ã®classã‚’ä»˜ã‘ã¦å ´æ‰€ã‚‚ã‚µã‚¤ã‚ºã‹ã‚‰æ±ºå®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
                     imgE.onload = function () {
                         imgE.classList.add('show');
                         imgE.style.left = baseX + (i * 10) - (imgE.width/2) + 'px';
                         imgE.style.top  = baseY + (i * 10) - (imgE.height / 2) + 'px';
                     }
-                    // img —v‘f‚Ì src ‘®«‚Éƒf[ƒ^‚ğƒZƒbƒgB
+                    // img è¦ç´ ã® src å±æ€§ã«ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã€‚
                     imgE.src = reader.result;
                 }
-                // FileReader‚Å“Ç‚İ‚ñ‚ÅData URL‚Æ‚µ‚Äæ“¾‚·‚éB
+                // FileReaderã§èª­ã¿è¾¼ã‚“ã§Data URLã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚
                 reader.readAsDataURL(files[i]);
             })(imgE);
         }
