@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>ko.observable/Binding 03</title>
+<script src="knockout-2.2.1.js"></script>
+<script>
+    function ViewModel() {
+        this.lastName = ko.observable('小鳥遊');
+        this.firstName = ko.observable('六花');
+        this.fullName = ko.computed(function () {
+            return this.lastName() + this.firstName();
+        }, this);
+        this.isValid = ko.computed(function () {
+            return this.lastName() && this.firstName();
+        }, this);
+
+        this.names = ko.observableArray();
+        this.namesCount = ko.computed(function () { return this.names().length; }, this);
+
+        this.submit = function (e) {
+            this.names.push({ lastName: this.lastName(), firstName: this.firstName() });
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var viewModel = new ViewModel();
+        ko.applyBindings(
+            viewModel,
+            document.querySelector('#target')
+        );
+    });
+</script>
+</head>
+<body>
+<div id="target">
+<input type="text" data-bind="value: lastName" />
+<input type="text" data-bind="value: firstName" />
+<span data-bind="text: fullName">姓名</span>
+<p data-bind="ifnot: isValid">未入力項目があります。</p>
+<p data-bind="if: isValid"><button data-bind="    click: submit">送信</button></p>
+
+<h2>Names <span data-bind="text: namesCount">0</span></h2>
+<ul data-bind="foreach: names">
+    <li><span data-bind="text: lastName">姓</span><span data-bind="    text: firstName">名</span></li>
+</ul>
+</div>
+</body>
+</html>
