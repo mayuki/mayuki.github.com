@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>CSSで画像を6角形にする</title>
+<link rel="stylesheet" href="../Shared/Css/common.css">
+<style>
+    body { background-color: #eee; }
+    .target {
+        -webkit-transform: skewX(-27deg);
+                transform: skewX(-27deg);
+    }
+
+    .box1 {
+        width: 300px;
+        overflow: hidden;
+        -webkit-transform: skewX(-27deg);
+                transform: skewX(-27deg);
+    }
+    .box2 {
+        width: 300px;
+        overflow: hidden;
+        -webkit-transform: skewX(45.5deg);
+                transform: skewX(45.5deg);
+    }
+
+    .box1-with-border {
+        border: 1px solid red;
+        box-sizing: border-box;
+    }
+    .box2-with-border {
+        border: 1px solid green;
+        box-sizing: border-box;
+    }
+</style>
+
+<h1>CSSで画像を6角形にする</h1>
+<h2>元画像</h2>
+<div><img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" /></div>
+
+<h2>6角形</h2>
+<div class="box1">
+    <div class="box2">
+        <div class="target">
+            <img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+        </div>
+    </div>
+</div>
+
+<h3>しくみ</h3>
+<div class="box1 box1-with-border">
+    <img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+</div>
+<div class="box2 box2-with-border">
+    <img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+</div>
+<div class="box1 box1-with-border">
+    <div class="box2 box2-with-border">
+        <img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+    </div>
+</div>
+<div class="box1 box1-with-border">
+    <div class="box2 box2-with-border">
+        <div class="target">
+            <img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+        </div>
+    </div>
+</div>
