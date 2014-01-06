@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<title>CSSで画像を円形にする</title>
+<link rel="stylesheet" href="../Shared/Css/common.css">
+<style>
+    body { background-color: #eee; }
+    .target {
+        -webkit-transform: translateX(-15%); 
+                transform: translateX(-15%);
+    }
+
+    .box1 {
+        border-radius: 75px;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+    }
+</style>
+
+<h1>CSSで画像を円形にする</h1>
+<h2>元画像</h2>
+<div><img src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" /></div>
+
+<h2>円形</h2>
+<div class="box1">
+    <img class="target" src="http://25.media.tumblr.com/7fb19051ad18a13a779f71bfbc587710/tumblr_mqx3senlCC1qaph4io1_500.png" width="300" />
+</div>
