@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <openServiceDescription
     xmlns="http://www.microsoft.com/schemas/openservicedescription/1.0">
     <homepageUrl>http://mayuki.github.com</homepageUrl>
@@ -8,12 +8,12 @@
     </display>
     <activity category="Bookmark">
         <activityAction context="document" >
-            <preview method="get" action="http://mayuki.github.com/Accelerator/HatenaB/?20110103-01#{documentUrl}" />
-            <execute method="get" action="http://mayuki.github.com/Accelerator/HatenaB/?20110103-01#Open:{documentUrl}" />
+            <preview method="get" action="https://mayuki.github.com/Accelerator/HatenaB/?20110103-01#{documentUrl}" />
+            <execute method="get" action="https://mayuki.github.com/Accelerator/HatenaB/?20110103-01#Open:{documentUrl}" />
         </activityAction>
         <activityAction context="link" >
-            <preview method="get" action="http://mayuki.github.com/Accelerator/HatenaB/?20110103-01#{link}" />
-            <execute method="get" action="http://mayuki.github.com/Accelerator/HatenaB/?20110103-01#Open:{link}" />
+            <preview method="get" action="https://mayuki.github.com/Accelerator/HatenaB/?20110103-01#{link}" />
+            <execute method="get" action="https://mayuki.github.com/Accelerator/HatenaB/?20110103-01#Open:{link}" />
         </activityAction>
     </activity>
 </openServiceDescription>
